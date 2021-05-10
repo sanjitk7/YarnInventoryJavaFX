@@ -20,61 +20,68 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ConnectionUtil;
 
-public class LoginController implements Initializable {
+public class SignupController implements Initializable {
 
     @FXML
     private Label lblErrors;
 
     @FXML
-    private TextField txtUsername;
+    private TextField txtFullName;
 
     @FXML
-    private TextField txtPassword;
+    private TextField txtEmail;
 
     @FXML
-    private Button btnSignin;
+    private TextField txtPassword1;
+
+    @FXML
+    private TextField txtPassword2;
+
+    @FXML
+    private TextField txtAge;
 
     @FXML
     private Button btnSignup;
-    /// -- 
+
+
+    @FXML
+    private TextField signinpage;
+
+
+    /// --
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
     @FXML
-    public void handleButtonAction(MouseEvent event) {
+    public void handleSignUpPageButtonAction(MouseEvent event) {
 
-        if (event.getSource() == btnSignin) {
-            //login here
-            if (logIn().equals("Success")) {
+        if (event.getSource() == btnSignup) {
+            if (signup().equals("Success")) {
                 try {
-                    //add you loading or delays - ;-)
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     //stage.setMaximized(true);
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/OnBoard.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
-
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 }
 
             }
         }
-        if(event.getSource() == btnSignup){
-            System.out.print("signup page redirect");
-            try{
-                //add you loading or delays - ;-)
+        if(event.getSource() == signinpage){
+            try {
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 //stage.setMaximized(true);
                 stage.close();
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml")));
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Login.fxml")));
                 stage.setScene(scene);
                 stage.show();
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 System.err.println(ex.getMessage());
             }
         }
@@ -93,31 +100,42 @@ public class LoginController implements Initializable {
     }
 
     // constructor that initialises the db connection
-    public LoginController() {
+    public SignupController() {
         con = ConnectionUtil.conDB();
     }
 
     //we  gonna use string to check for status
-    private String logIn() {
+    private String signup() {
         String status = "Success";
-        String email = txtUsername.getText();
-        String password = txtPassword.getText();
-        if(email.isEmpty() || password.isEmpty()) {
+        String email = txtEmail.getText();
+        String age = txtAge.getText();
+        String name = txtFullName.getText();
+
+        String password1 = txtPassword1.getText();
+        String password2 = txtPassword2.getText();
+
+        if (!password1.equals(password2)){
+            setLblError(Color.TOMATO, "Password Fields Mismatch");
+            status = "Error";
+        }
+        if(name.isEmpty() || email.isEmpty() || password1.isEmpty() || password2.isEmpty() || age.isEmpty()) {
             setLblError(Color.TOMATO, "Empty credentials");
             status = "Error";
         } else {
             //query
-            String sql = "SELECT * FROM admins Where email = ? and pass = ?";
+            String sql = "INSERT INTO admins(fullname, email, pass,age) VALUES (?,?,?,?)";
             try {
                 preparedStatement = con.prepareStatement(sql);
-                preparedStatement.setString(1, email);
-                preparedStatement.setString(2, password);
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, email);
+                preparedStatement.setString(3, password1);
+                preparedStatement.setInt(4, Integer.parseInt(age));
                 resultSet = preparedStatement.executeQuery();
                 if (!resultSet.next()) {
-                    setLblError(Color.TOMATO, "Enter Correct Email/Password");
+                    setLblError(Color.TOMATO, "Please username or password validity...");
                     status = "Error";
                 } else {
-                    setLblError(Color.GREEN, "Login Successful..Redirecting..");
+                    setLblError(Color.GREEN, "Signup Successful..Redirecting..");
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
