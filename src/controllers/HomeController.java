@@ -14,6 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,7 +46,8 @@ public class HomeController implements Initializable {
     private ComboBox<String> txtAvailability;
     @FXML
     Label lblStatus;
-
+    @FXML
+    private Button rowDelete;
     @FXML
     TableView tblData;
 
@@ -171,6 +173,26 @@ public class HomeController implements Initializable {
             tblData.setItems(data);
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+        }
+    }
+
+
+    String deleteQuery = "DELETE FROM yarn_java WHERE id=?";
+    @FXML
+    private void handleRowDelete(ActionEvent event){
+//        System.out.println("Handle Row Event Handler is called");
+//        System.out.println("Selected Item ID:");
+        int d_id = Integer.parseInt(tblData.getSelectionModel().getSelectedItem().toString().split(",")[0].substring(1));
+        System.out.println(d_id);
+        try {
+
+            preparedStatement = (PreparedStatement) connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, d_id);
+            preparedStatement.executeUpdate();
+
+            tblData.getItems().removeAll(tblData.getSelectionModel().getSelectedItem());
+        } catch (Exception e){
+            System.out.println("An Exception has occurred: "+e);
         }
     }
 

@@ -100,3 +100,7 @@
     -fx-border-color: derive(-fx-pie-color, 1%);
     -fx-border-width: 0px;
 }
+
+#rowDelete{
+    -fx-background-color: #C67B7B;
+}
