@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="1101.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane id="AnchorPane" onMouseClicked="#handleSignoutButtonhandleSignoutButton" prefHeight="564.0" prefWidth="1101.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <children>
         <Pane prefHeight="575.0" prefWidth="429.0" style="-fx-background-color: #8E9775;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -46,6 +46,7 @@
             </columnResizePolicy>
         </TableView>
         <Label fx:id="lblStatus" layoutX="438.0" layoutY="26.0" prefHeight="32.0" prefWidth="354.0" text="Status :" />
-      <Button fx:id="rowDelete" layoutX="835.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRowDelete" prefHeight="25.0" prefWidth="240.0" stylesheets="@../styling/fullpackstyling.css" text="Delete Selected Row" />
+      <Button fx:id="rowDelete" layoutX="835.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRowDelete" prefHeight="25.0" prefWidth="240.0" stylesheets="@../styling/fullpackstyling.css" text="Delete Selected Product" />
+      <Button fx:id="signoutButton" layoutX="959.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#handleSignoutButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Sign out" />
     </children>
 </AnchorPane>

@@ -46,7 +46,6 @@ public class LoginController implements Initializable {
             //login here
             if (logIn().equals("Success")) {
                 try {
-
                     //add you loading or delays - ;-)
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();

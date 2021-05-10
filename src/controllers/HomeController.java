@@ -7,6 +7,7 @@ package controllers;
 
 //import com.mysql.jdbc.Connection;
 //import com.mysql.cj.jdbc.PreparedStatement;
+import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +17,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import utils.ConnectionUtil;
 
@@ -50,6 +55,9 @@ public class HomeController implements Initializable {
     private Button rowDelete;
     @FXML
     TableView tblData;
+
+    @FXML
+    private Button signoutButton;
 
     /**
      * Initializes the controller class.
@@ -193,6 +201,25 @@ public class HomeController implements Initializable {
             tblData.getItems().removeAll(tblData.getSelectionModel().getSelectedItem());
         } catch (Exception e){
             System.out.println("An Exception has occurred: "+e);
+        }
+    }
+    @FXML
+    public void handleSignoutButton(MouseEvent event) {
+    System.out.print("This func called");
+        if (event.getSource() == signoutButton) {
+            //logout here
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    //stage.setMaximized(true);
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Login.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
         }
     }
 
