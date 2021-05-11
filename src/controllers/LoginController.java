@@ -36,6 +36,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button btnSignup;
+
+    @FXML
+    private Button btnInq;
     /// -- 
     Connection con = null;
     PreparedStatement preparedStatement = null;
@@ -72,6 +75,21 @@ public class LoginController implements Initializable {
                 //stage.setMaximized(true);
                 stage.close();
                 Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+        if(event.getSource() == btnInq){
+            System.out.print("inq page redirect");
+            try{
+                //add you loading or delays - ;-)
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                //stage.setMaximized(true);
+                stage.close();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Inquiry.fxml")));
                 stage.setScene(scene);
                 stage.show();
             }catch (IOException ex) {

@@ -32,7 +32,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="487.0" layoutY="87.0" AnchorPane.bottomAnchor="86.0" AnchorPane.topAnchor="87.0">
+        <Pane layoutX="468.0" layoutY="87.0" prefHeight="290.0" prefWidth="305.0" AnchorPane.bottomAnchor="86.0" AnchorPane.topAnchor="87.0">
             <children>
                 <TextField fx:id="txtUsername" layoutY="77.0" prefHeight="34.0" prefWidth="275.0" promptText="username or email" />
                 <PasswordField fx:id="txtPassword" layoutY="138.0" prefHeight="34.0" prefWidth="275.0" promptText="password" stylesheets="@../styling/fullpackstyling.css" />
@@ -51,5 +51,6 @@
                 </Label>
             </children>
         </Pane>
+      <Button fx:id="btnInq" layoutX="586.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="159.0" stylesheets="@../styling/fullpackstyling.css" text="Inquire about products" />
     </children>
 </AnchorPane>
