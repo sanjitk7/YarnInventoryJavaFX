@@ -45,7 +45,7 @@ public class SignupController implements Initializable {
 
 
     @FXML
-    private TextField signinpage;
+    private Button signinpage;
 
 
     /// --
