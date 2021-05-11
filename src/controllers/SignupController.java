@@ -106,6 +106,7 @@ public class SignupController implements Initializable {
 
     //we  gonna use string to check for status
     private String signup() {
+//        System.out.println("signup check");
         String status = "Success";
         String email = txtEmail.getText();
         String age = txtAge.getText();
@@ -122,6 +123,7 @@ public class SignupController implements Initializable {
             setLblError(Color.TOMATO, "Empty credentials");
             status = "Error";
         } else {
+//            System.out.println("signup check 2");
             //query
             String sql = "INSERT INTO admins(fullname, email, pass,age) VALUES (?,?,?,?)";
             try {
@@ -130,13 +132,9 @@ public class SignupController implements Initializable {
                 preparedStatement.setString(2, email);
                 preparedStatement.setString(3, password1);
                 preparedStatement.setInt(4, Integer.parseInt(age));
-                resultSet = preparedStatement.executeQuery();
-                if (!resultSet.next()) {
-                    setLblError(Color.TOMATO, "Please username or password validity...");
-                    status = "Error";
-                } else {
-                    setLblError(Color.GREEN, "Signup Successful..Redirecting..");
-                }
+                preparedStatement.executeUpdate();
+//                System.out.println("signup check 4");
+                setLblError(Color.GREEN, "Signup Successful..Redirecting..");
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
                 status = "Exception";
