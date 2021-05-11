@@ -47,6 +47,7 @@
         </TableView>
         <Label fx:id="lblStatus" layoutX="438.0" layoutY="26.0" prefHeight="32.0" prefWidth="354.0" text="Status :" />
       <Button fx:id="rowDelete" layoutX="835.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRowDelete" prefHeight="25.0" prefWidth="240.0" stylesheets="@../styling/fullpackstyling.css" text="Delete Selected Product" />
-      <Button fx:id="signoutButton" layoutX="959.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#handleSignoutButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Sign out" />
+      <Button fx:id="signoutButton" layoutX="959.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#handleButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Sign out" />
+      <Button fx:id="goToInquiry" layoutX="835.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#handleButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Go To Inquiries" />
     </children>
 </AnchorPane>

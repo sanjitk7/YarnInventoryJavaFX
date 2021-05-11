@@ -59,6 +59,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button signoutButton;
 
+    @FXML
+    private Button goToInquiry;
+
     /**
      * Initializes the controller class.
      */
@@ -204,7 +207,7 @@ public class HomeController implements Initializable {
         }
     }
     @FXML
-    public void handleSignoutButton(MouseEvent event) {
+    public void handleButton(MouseEvent event) {
     System.out.print("This func called");
         if (event.getSource() == signoutButton) {
             //logout here
@@ -221,6 +224,23 @@ public class HomeController implements Initializable {
                 }
 
         }
+        if (event.getSource() == goToInquiry) {
+            //logout here
+
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                //stage.setMaximized(true);
+                stage.close();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/InquiriesView.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+
+        }
+
     }
 
 }

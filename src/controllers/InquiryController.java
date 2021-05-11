@@ -72,7 +72,8 @@ public class InquiryController implements Initializable {
     ResultSet resultSet = null;
 
     @FXML
-    public void handleSignUpPageButtonAction(MouseEvent event) {
+    public void handleButton(MouseEvent event) {
+        System.out.println("Mouse Event Recieved");
 
         if (event.getSource() == btnSend) {
                 try {
