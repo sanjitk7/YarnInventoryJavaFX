@@ -74,7 +74,6 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         txtAvailability.getItems().addAll("Yes", "No");
         txtAvailability.getSelectionModel().select("Yes");
         fetColumnList();

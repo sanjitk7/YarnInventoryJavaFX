@@ -47,43 +47,34 @@ import utils.ConnectionUtil;
 public class InquiryViewController implements Initializable {
 
     @FXML
-    private Label lblErrors;
-
-    @FXML
-    private TextField txtYarnColor;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtProductId;
-
-    @FXML
-    private TextArea txtMessage;
-
-    @FXML
-    private TextField txtYarnCount;
-
-    @FXML
-    private Button btnSend;
-
-
-    @FXML
-    private Button btnLogin;
-
-    @FXML
     private Button goToProducts;
 
     @FXML
     private Button signoutButton;
 
     @FXML
+    Label lblStatus;
+
+    @FXML
     TableView tblInq;
 
     /// --
-    Connection con;
     PreparedStatement preparedStatement;
-    ResultSet resultSet;
+    Connection con;
+
+
+    // constructor that initialises the db connection
+    public InquiryViewController() {
+        con = ConnectionUtil.conDB();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        fetColumnList();
+        fetRowList();
+    }
+
 
     @FXML
     public void handleButton(MouseEvent event) {
@@ -122,23 +113,6 @@ public class InquiryViewController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        if (con == null) {
-            lblErrors.setTextFill(Color.TOMATO);
-            lblErrors.setText("Server Error : Check");
-        } else {
-            lblErrors.setTextFill(Color.GREEN);
-            lblErrors.setText("Server is up : Good to go");
-        }
-//        fetColumnList();
-//        fetRowList();
-    }
-
-    // constructor that initialises the db connection
-    public InquiryViewController() {
-        con = ConnectionUtil.conDB();
-    }
 
     // Table View Inquiry
     private ObservableList<ObservableList> data;
@@ -162,7 +136,7 @@ public class InquiryViewController implements Initializable {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
-                System.out.println("fetching columns for inq 4"+ btnSend);
+                System.out.println("fetching columns for inq 4");
                 tblInq.getColumns().removeAll(col);
                 tblInq.getColumns().addAll(col);
                 System.out.println("fetching columns for inq 5");
@@ -201,10 +175,4 @@ public class InquiryViewController implements Initializable {
         }
     }
 
-
-    private void setLblError(Color color, String text) {
-        lblErrors.setTextFill(color);
-        lblErrors.setText(text);
-        System.out.println(text);
-    }
 }
