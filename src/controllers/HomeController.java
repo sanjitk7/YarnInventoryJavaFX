@@ -10,6 +10,7 @@ package controllers;
 import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -52,6 +53,8 @@ public class HomeController implements Initializable {
     @FXML
     Label lblStatus;
     @FXML
+    Label lblTotal;
+    @FXML
     private Button rowDelete;
     @FXML
     TableView tblData;
@@ -78,6 +81,7 @@ public class HomeController implements Initializable {
         txtAvailability.getSelectionModel().select("Yes");
         fetColumnList();
         fetRowList();
+        fetchTotal();
 
     }
 
@@ -115,6 +119,7 @@ public class HomeController implements Initializable {
             lblStatus.setText("Added Successfully");
 
             fetRowList();
+            fetchTotal();
             //clear fields
             clearFields();
             return "Success";
@@ -186,6 +191,22 @@ public class HomeController implements Initializable {
         }
     }
 
+    private void fetchTotal(){
+        int total = 0;
+//        Object item = tblData.getItems().get(0);
+//        System.out.println("tblData.getItems(): "+tblData.getItems().get(0));
+//        TableColumn c = (TableColumn) tblData.getColumns().get(4);
+//        System.out.println("C : "+ c);
+//        System.out.println("cellval : "+ c.getText());
+        for (int i=0;i<tblData.getItems().size();i++){
+            int currCell = Integer.parseInt(tblData.getItems().get(i).toString().split(",")[3].trim());
+            total+=currCell;
+            System.out.println(currCell);
+        }
+        System.out.println("Total : "+ total);
+        lblTotal.setText("Total Bags in Stock: "+ total);
+    }
+
 
     String deleteQuery = "DELETE FROM yarn_java WHERE id=?";
     @FXML
@@ -201,6 +222,7 @@ public class HomeController implements Initializable {
             preparedStatement.executeUpdate();
 
             tblData.getItems().removeAll(tblData.getSelectionModel().getSelectedItem());
+            fetchTotal();
         } catch (Exception e){
             System.out.println("An Exception has occurred: "+e);
         }
