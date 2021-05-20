@@ -49,6 +49,7 @@
                         <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Label>
+            <Button fx:id="btnPdt" layoutX="116.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="159.0" stylesheets="@../styling/fullpackstyling.css" text="View Products" />
             </children>
         </Pane>
       <Button fx:id="btnInq" layoutX="586.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="159.0" stylesheets="@../styling/fullpackstyling.css" text="Inquire about products" />
