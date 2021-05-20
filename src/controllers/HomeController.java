@@ -61,7 +61,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button signoutButton;
-
+    @FXML
+    private Button btnPie;
     @FXML
     private Button goToInquiry;
 
@@ -254,6 +255,22 @@ public class HomeController implements Initializable {
                 //stage.setMaximized(true);
                 stage.close();
                 Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/InquiriesView.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+
+        }
+        if (event.getSource() == btnPie) {
+            //logout here
+
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                //stage.setMaximized(true);
+                stage.close();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Charts.fxml")));
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {

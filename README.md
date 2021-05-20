@@ -22,7 +22,7 @@ A simple JavaFX product inventory tool to keep track of products and inquiries g
 
 ## Flow
 
-![](assets/img/flow.png)
+![](assets/img/flow2.png)
 
 ## Pages
 
@@ -33,6 +33,10 @@ SignUp
 SignIn
 
 ![](./assets/img/signin.png)
+
+View Products
+
+![](./assets/img/productsView.png)
 
 Manage Products
 
@@ -45,3 +49,7 @@ Send Inquiry
 View Inquiries for Employee
 
 ![](assets/img/inquiryView.png)
+
+Stock Composition
+
+![](assets/img/pie.png)
