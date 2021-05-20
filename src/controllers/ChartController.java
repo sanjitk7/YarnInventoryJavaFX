@@ -74,7 +74,29 @@ public class ChartController implements Initializable{
 //        PieChart pieChart = new PieChart(pieChartData);
         pieChart.setData(pieChartData);
         pieChart.setTitle("Mobile Sales");
+        fetchPieChartData();
 
+    }
 
+    String query = "SELECT yarn_color,quantity FROM yarn_java";
+
+    public void fetchPieChartData(){
+            try{
+                ResultSet rs = con.createStatement().executeQuery(query);
+                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+                while (rs.next()) {
+                    // Read values using column name
+                    String color = rs.getString("yarn_color");
+                    int quantity = rs.getInt("quantity");
+
+                    System.out.println("\n YARN COLOR: "+color+"\n   YARN QTY: "+quantity);
+                    pieChartData.add(new PieChart.Data(color, quantity));
+
+                }
+                pieChart.setData(pieChartData);
+                pieChart.setTitle("Yarn Stock");
+            } catch (Exception e){
+                System.out.println("Error: "+e);
+            }
     }
 }
