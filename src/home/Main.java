@@ -22,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ProductsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Charts.fxml"));
         stage.initStyle(StageStyle.DECORATED);
         stage.setMaximized(false);
 
