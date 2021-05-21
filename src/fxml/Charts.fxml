@@ -12,8 +12,8 @@
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Button fx:id="btnSignout" layoutX="627.0" layoutY="28.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Sign out" />
-      <Button fx:id="goToProducts" layoutX="495.0" layoutY="28.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Go To Products" />
+      <Button fx:id="btnSignout" layoutX="627.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#handleButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Sign out" />
+      <Button fx:id="goToProducts" layoutX="495.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#handleButton" prefHeight="27.0" prefWidth="111.0" stylesheets="@../styling/fullpackstyling.css" text="Go To Products" />
       <PieChart fx:id="pieChart" layoutX="134.0" layoutY="93.0" />
    </children>
 </AnchorPane>

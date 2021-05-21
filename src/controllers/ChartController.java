@@ -2,6 +2,7 @@ package controllers;
 
 
 import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -78,7 +79,10 @@ public class ChartController implements Initializable{
 
     }
 
+
+
     String query = "SELECT yarn_color,quantity FROM yarn_java";
+
 
     public void fetchPieChartData(){
             try{
@@ -93,10 +97,55 @@ public class ChartController implements Initializable{
                     pieChartData.add(new PieChart.Data(color, quantity));
 
                 }
+
+                // adding data to each pie
+//                pieChartData.forEach(data ->
+//                        data.nameProperty().bind(
+//                                Bindings.concat(
+//                                        data.getName(), " ", data.pieValueProperty(), " Bags"
+//                                )
+//                        )
+//                );
                 pieChart.setData(pieChartData);
-                pieChart.setTitle("Yarn Stock");
+                pieChart.setTitle("Yarn Stock in Bags (90kgs each)");
             } catch (Exception e){
                 System.out.println("Error: "+e);
             }
+    }
+
+
+    public void handleButton(MouseEvent event) {
+        System.out.println("Mouse Event Recieved");
+
+        if (event.getSource() == btnSignout) {
+            //logout here
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                //stage.setMaximized(true);
+                stage.close();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Login.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+
+        }
+        if (event.getSource() == goToProducts) {
+            //logout here
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                //stage.setMaximized(true);
+                stage.close();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/OnBoard.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+
+        }
     }
 }
